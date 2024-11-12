@@ -42,7 +42,7 @@ const CandidateSearch = () => {
 
   return (
     <>
-      <h1>CandidateSearch</h1>;
+      <h1>CandidateSearch</h1>
       {candidatesLeft ? (
         <Box>
           <img src={`${candidateData.avatar_url}`} width="100" height="100" />
