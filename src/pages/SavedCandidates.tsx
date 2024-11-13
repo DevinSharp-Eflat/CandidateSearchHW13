@@ -12,14 +12,12 @@ const SavedCandidates = () => {
 
   const removeCandidate = (candidate: Candidate) => {
     const savedCandidates = JSON.parse(localStorage.getItem("savedCandidates") || "[]");
-    const candidateIndex = savedCandidates.find((cand: Candidate, x: number) => {
-      if (cand.name === candidate.name){
-        return x;
-      }
-    });
-    savedCandidates.splice(candidateIndex, 1);
-    localStorage.setItem("savedCandidates", JSON.stringify(savedCandidates));
-    setSavedCandidates(savedCandidates);
+    const candidateIndex = savedCandidates.indexOf(candidate);
+    const firstHalf = savedCandidates.slice(0,candidateIndex);
+    const secondHalf = savedCandidates.slice(candidateIndex, savedCandidates.length);
+    const newCandidates = firstHalf.concat(secondHalf);
+    localStorage.setItem("savedCandidates", JSON.stringify(newCandidates));
+    setSavedCandidates(newCandidates);
   }
 
   return (
