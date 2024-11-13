@@ -12,7 +12,11 @@ const SavedCandidates = () => {
 
   const removeCandidate = (candidate: Candidate) => {
     const savedCandidates = JSON.parse(localStorage.getItem("savedCandidates") || "[]");
-    const candidateIndex = savedCandidates.indexOf(candidate)
+    const candidateIndex = savedCandidates.find((cand: Candidate, x: number) => {
+      if (cand.name === candidate.name){
+        return x;
+      }
+    });
     savedCandidates.splice(candidateIndex, 1);
     localStorage.setItem("savedCandidates", JSON.stringify(savedCandidates));
     setSavedCandidates(savedCandidates);
