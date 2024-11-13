@@ -12,9 +12,10 @@ const SavedCandidates = () => {
 
   const removeCandidate = (candidate: Candidate) => {
     const savedCandidates = JSON.parse(localStorage.getItem("savedCandidates") || "[]");
-    const remainingCandidates = savedCandidates.splice(candidate.id, 1);
-    localStorage.setItem("savedCandidates", JSON.stringify(remainingCandidates));
-    setSavedCandidates(remainingCandidates);
+    const candidateIndex = savedCandidates.indexOf(candidate)
+    savedCandidates.splice(candidateIndex, 1);
+    localStorage.setItem("savedCandidates", JSON.stringify(savedCandidates));
+    setSavedCandidates(savedCandidates);
   }
 
   return (
