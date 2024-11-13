@@ -12,7 +12,7 @@ const SavedCandidates = () => {
 
   const removeCandidate = (candidate: Candidate) => {
     const savedCandidates = JSON.parse(localStorage.getItem("savedCandidates") || "[]");
-    const newCandidates = savedCandidates.filter((cand: Candidate) => cand.id !== savedCandidates.id)
+    const newCandidates = savedCandidates.filter((cand: Candidate) => cand.id !== candidate.id)
     localStorage.setItem("savedCandidates", JSON.stringify(newCandidates));
     setSavedCandidates(newCandidates);
   }
