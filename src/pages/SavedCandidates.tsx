@@ -12,7 +12,7 @@ const SavedCandidates = () => {
 
   const removeCandidate = (candidate: Candidate) => {
     const savedCandidates = JSON.parse(localStorage.getItem("savedCandidates") || "[]");
-    const remainingCandidates = savedCandidates.remove(candidate.id);
+    const remainingCandidates = savedCandidates.splice(candidate.id, 1);
     localStorage.setItem("savedCandidates", JSON.stringify(remainingCandidates));
     setSavedCandidates(remainingCandidates);
   }
@@ -23,6 +23,7 @@ const SavedCandidates = () => {
       <Box sx ={{ width:'100%'}}>
         {savedCandidates && savedCandidates.map(candidate => (
         <List>
+          <Box sx={{p: 2, border: "2px solid black"}}>
           <Stack direction="row">
             <img src={`${candidate.avatar_url}`} width="100" height="100" />
             <Divider orientation='horizontal'/>
@@ -40,6 +41,7 @@ const SavedCandidates = () => {
               onClick={() => { removeCandidate(candidate)}}
             >Remove</Button>
           </Stack>
+          </Box>
         </List>
         ))}
       </Box>
